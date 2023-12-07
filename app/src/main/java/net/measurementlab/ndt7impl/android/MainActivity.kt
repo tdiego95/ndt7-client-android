@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import net.measurementlab.ndt7.android.NDTTest
 import net.measurementlab.ndt7.android.models.ClientResponse
+import net.measurementlab.ndt7.android.models.HostnameResponse
 import net.measurementlab.ndt7.android.utils.DataConverter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -51,11 +52,16 @@ class MainActivity : AppCompatActivity() {
 
     private inner class NDTTestImpl constructor(okHttpClient: OkHttpClient) : NDTTest(okHttpClient) {
 
+        override fun onConnected(hostnameResponse: HostnameResponse) {
+            super.onConnected(hostnameResponse)
+            Log.d(TAG, "server info: ${hostnameResponse.results?.get(0)}")
+        }
+
         override fun onDownloadProgress(clientResponse: ClientResponse) {
             super.onDownloadProgress(clientResponse)
             Log.d(TAG, "download progress: $clientResponse")
 
-            val speed = DataConverter.convertToMbps(clientResponse)
+            val speed = DataConverter.convertToMbpsString(clientResponse)
 
             runOnUiThread {
                 textView.text = speed
@@ -68,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             super.onUploadProgress(clientResponse)
             Log.d(TAG, "upload stuff: $clientResponse")
 
-            val speed = DataConverter.convertToMbps(clientResponse)
+            val speed = DataConverter.convertToMbpsString(clientResponse)
             runOnUiThread {
                 textView2.text = speed
             }
@@ -77,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onFinished(clientResponse: ClientResponse?, error: Throwable?, testType: TestType) {
             super.onFinished(clientResponse, error, testType)
-            val speed = clientResponse?.let { DataConverter.convertToMbps(it) }
+            val speed = clientResponse?.let { DataConverter.convertToMbpsString(it) }
             println(error)
             error?.printStackTrace()
             Log.d(TAG, "ALL DONE: $speed")

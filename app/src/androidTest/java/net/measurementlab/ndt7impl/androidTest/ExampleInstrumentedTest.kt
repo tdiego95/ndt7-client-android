@@ -25,7 +25,7 @@ class ExampleInstrumentedTest {
 
     @Test
     fun canConvertToMbps() {
-        val speed = DataConverter.convertToMbps(ClientResponse(AppInfo(10000, 800000.0), test = "client"))
+        val speed = DataConverter.convertToMbpsString(ClientResponse(AppInfo(10000, 800000.0), test = "client"))
         assertEquals(speed, "640.0")
     }
 }

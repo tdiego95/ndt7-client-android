@@ -48,7 +48,7 @@ public class JavaMainActivity extends Activity {
         @Override
         public void onDownloadProgress(@NotNull ClientResponse clientResponse) {
             super.onDownloadProgress(clientResponse);
-            String speed = DataConverter.convertToMbps(clientResponse);
+            String speed = DataConverter.convertToMbpsString(clientResponse);
             System.out.println("Download Progress: " + speed);
             JavaMainActivity.this.runOnUiThread(new Runnable() {
                 public void run() {
@@ -67,7 +67,7 @@ public class JavaMainActivity extends Activity {
         @Override
         public void onUploadProgress(@NotNull ClientResponse clientResponse) {
             super.onUploadProgress(clientResponse);
-            String speed = DataConverter.convertToMbps(clientResponse);
+            String speed = DataConverter.convertToMbpsString(clientResponse);
             System.out.println("Upload Progress: " + speed);
             JavaMainActivity.this.runOnUiThread(new Runnable() {
                 public void run() {

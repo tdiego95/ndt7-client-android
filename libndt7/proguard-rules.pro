@@ -34,5 +34,5 @@
 
 -keep class net.measurementlab.ndt7.android.DataPublisher { *; }
 -keep class net.measurementlab.ndt7.android.utils.DataConverter {
-    java.lang.String convertToMbps(net.measurementlab.ndt7.android.models.ClientResponse);
+    java.lang.String convertToMbpsString(net.measurementlab.ndt7.android.models.ClientResponse);
 }

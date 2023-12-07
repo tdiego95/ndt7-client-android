@@ -82,7 +82,7 @@ class NDT7HealthTest {
             }
 
             clientResponse?.let {
-                val speed = DataConverter.convertToMbps(it)
+                val speed = DataConverter.convertToMbpsString(it)
                 // do something with the speed
             }
         }

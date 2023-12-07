@@ -50,6 +50,7 @@ abstract class NDTTest(private var httpClient: OkHttpClient? = null) : DataPubli
                 override fun onResponse(call: Call, response: Response) {
                     try {
                         val hostInfo: HostnameResponse = Gson().fromJson(response.body?.string(), HostnameResponse::class.java)
+                        onConnected(hostInfo)
                         val numUrls = hostInfo.results?.size!!
                         for (i in 0 until numUrls) {
                             try {

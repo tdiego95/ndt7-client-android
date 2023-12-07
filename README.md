@@ -35,7 +35,7 @@ Returns Measurement information during the upload speed test. You can look at th
 ```
 This returns the ElapsedTime and NumBytes during the download test. ElapsedTime is in *microseconds*. 
 To ease data transformation into the commonly used `mbps`, we expose a static class that assists with the calculations
-`DataConverter.convertToMbps(clientResponse) will generate a String that represents the speed in mbps. Note this is mega*BITS* per second.
+`DataConverter.convertToMbps(clientResponse) will generate a Double that represents the speed in mbps. Note this is mega*BITS* per second.
 
 
 
@@ -47,7 +47,7 @@ To ease data transformation into the commonly used `mbps`, we expose a static cl
 ```
 This returns the ElapsedTime and NumBytes during the upload test. ElapsedTime is in *microseconds*. 
 To ease data transformation into the commonly used `mbps`, we expose a static class that assists with the calculations
-`DataConverter.convertToMbps(clientResponse) will generate a String that represents the speed in mbps. Note this is mega*BITS* per second.
+`DataConverter.convertToMbps(clientResponse) will generate a Double that represents the speed in mbps. Note this is mega*BITS* per second.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 

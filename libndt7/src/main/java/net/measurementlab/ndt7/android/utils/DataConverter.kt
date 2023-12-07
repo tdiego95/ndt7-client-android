@@ -11,12 +11,20 @@ object DataConverter {
         return ClientResponse(AppInfo(currentTimeInMicroseconds() - startTime, numBytes), test = testType.value)
     }
 
-    @JvmStatic fun convertToMbps(clientResponse: ClientResponse): String {
+    @JvmStatic fun convertToMbpsString(clientResponse: ClientResponse): String {
         val time = clientResponse.appInfo.elapsedTime / 1e6
         var speed = clientResponse.appInfo.numBytes / time
         speed *= 8
         speed /= 1e6
         return String.format("%.1f", speed)
+    }
+
+    @JvmStatic fun convertToMbps(clientResponse: ClientResponse): Double {
+        val time = clientResponse.appInfo.elapsedTime / 1e6
+        var speed = clientResponse.appInfo.numBytes / time
+        speed *= 8
+        speed /= 1e6
+        return speed
     }
 
     fun currentTimeInMicroseconds(): Long {
